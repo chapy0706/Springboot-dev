@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class omikuji {
+public class OmikujiController {
 
     private final List<String> fortunes = List.of(
         "大吉", "吉", "吉", "吉", "小吉", "凶"
