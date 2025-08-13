@@ -1,8 +1,7 @@
 package com.example.demo;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,8 +20,8 @@ public class HelloController {
 //  return sb.toString();
 // }
 
-   @RequestMapping("/hello")
-   public String helloQueryString(@RequestParam String name, @RequestParam int age) {
+   @RequestMapping(value = "/hello/{name}/{age}")
+   public String helloQueryString(@PathVariable("name") String name, @PathVariable("age") int age) {
 	 age = age + 10; // ageを10年後として設定する
 	 return "こんにちは" + name + "さん。10年後は" + age + "歳ですね!";
    }
