@@ -25,16 +25,34 @@ public class BoardController {
  }
 
  @RequestMapping(value = "/apply", method = RequestMethod.POST)
- public ModelAndView apply(@RequestParam("name") String name, @RequestParam("contents") String contents,
- ModelAndView mv) {
+ public ModelAndView apply(@RequestParam("name") String name, 
+	@RequestParam("selectFeeling") String feeling, 
+	@RequestParam("contents") String contents, ModelAndView mv) {
+	 
   @SuppressWarnings("unchecked")
   List<Record> allContents = (List<Record>) session.getAttribute("contentsList");
   if (allContents == null) {
    allContents = new ArrayList<>();
    session.setAttribute("contentsList", allContents);
   }
-  allContents.add(new Record(name, contents));
+  String ErrorMessage = "";
+  Boolean registFlg = true;
+  
+  if (name.isEmpty() || contents.isEmpty()) {
+	  ErrorMessage = "名前と書き込みを入力してください";
+	  registFlg = false;
+	 }
+  
+  if (contents.matches("(http://|https://).*")) {
+	  contents = "<a href=\"" + contents + "\">" + contents + "</a>";
+	 }
+
+  if (registFlg) {
+	  allContents.add(new Record(name, feeling, contents));
+	 }
+  
   mv.addObject("allContents", allContents);
+  mv.addObject("ErrorMessage", ErrorMessage);
   mv.setViewName("board");
   return mv;
  }
