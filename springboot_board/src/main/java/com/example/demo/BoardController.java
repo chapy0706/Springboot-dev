@@ -33,8 +33,20 @@ public class BoardController {
    allContents = new ArrayList<>();
    session.setAttribute("contentsList", allContents);
   }
-  allContents.add(new Record(name, contents));
+  String ErrorMessage = "";
+  Boolean registFlg = true;
+  
+  if (name.isEmpty() || contents.isEmpty()) {
+	  ErrorMessage = "名前と書き込みを入力してください";
+	  registFlg = false;
+	 }
+
+  if (registFlg) {
+	  allContents.add(new Record(name, contents));
+	 }
+  
   mv.addObject("allContents", allContents);
+  mv.addObject("ErrorMessage", ErrorMessage);
   mv.setViewName("board");
   return mv;
  }

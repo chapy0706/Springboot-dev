@@ -8,6 +8,9 @@
  <body>
   <h1>掲示板</h1>
    <form action="/apply" method="post">
+	<p>
+    <font color="#ff0000" th:text="${ErrorMessage}"></font>
+   </p>
     <p>
      <input type="text" name="name" placeholder="名前">
     </p>
