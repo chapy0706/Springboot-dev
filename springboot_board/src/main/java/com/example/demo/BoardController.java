@@ -42,6 +42,10 @@ public class BoardController {
 	  ErrorMessage = "名前と書き込みを入力してください";
 	  registFlg = false;
 	 }
+  
+  if (contents.matches("(http://|https://).*")) {
+	  contents = "<a href=\"" + contents + "\">" + contents + "</a>";
+	 }
 
   if (registFlg) {
 	  allContents.add(new Record(name, feeling, contents));
