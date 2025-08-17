@@ -8,11 +8,13 @@ public class Record {
 
  private LocalDateTime datetime;
  private String name;
+ private String feeling;
  private String contents;
 
- public Record(String name, String contents) {
+ public Record(String name, String feeling, String contents) {
   super();
   this.name = name;
+  this.feeling = feeling;
   this.contents = contents;
   this.datetime = LocalDateTime.now();
  }
@@ -23,6 +25,10 @@ public class Record {
 
  public String getName() {
   return name;
+ }
+
+ public String getFeeling() {
+  return feeling;
  }
 
  public String getContents() {

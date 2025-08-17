@@ -25,8 +25,10 @@ public class BoardController {
  }
 
  @RequestMapping(value = "/apply", method = RequestMethod.POST)
- public ModelAndView apply(@RequestParam("name") String name, @RequestParam("contents") String contents,
- ModelAndView mv) {
+ public ModelAndView apply(@RequestParam("name") String name, 
+	@RequestParam("selectFeeling") String feeling, 
+	@RequestParam("contents") String contents, ModelAndView mv) {
+	 
   @SuppressWarnings("unchecked")
   List<Record> allContents = (List<Record>) session.getAttribute("contentsList");
   if (allContents == null) {
@@ -42,7 +44,7 @@ public class BoardController {
 	 }
 
   if (registFlg) {
-	  allContents.add(new Record(name, contents));
+	  allContents.add(new Record(name, feeling, contents));
 	 }
   
   mv.addObject("allContents", allContents);

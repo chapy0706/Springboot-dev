@@ -15,6 +15,14 @@
      <input type="text" name="name" placeholder="名前">
     </p>
     <p>
+    今の気分
+    <select name="selectFeeling">
+     <option value="◯">◯</option>
+     <option value="△">△</option>
+     <option value="×">×</option>
+    </select>
+   </p>
+    <p>
      <textarea name="contents" placeholder="書き込み">
      </textarea>
     </p>
@@ -27,11 +35,13 @@
    <tr>
     <th>日時</th>
     <th>名前</th>
+    <th>気分</th>
     <th>書き込み</th>
    </tr>
    <tr th:each="rec:${allContents}">
     <td th:text="${rec.datetime}"></td>
     <td th:text="${rec.name}"></td>
+    <td th:text="${rec.feeling}"></td>
     <td th:utext="${rec.contents}"></td>
    </tr>
   </table>
